@@ -13,25 +13,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{E34F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Core.Extensions", "Core\SimpleStore.Core.Extensions\SimpleStore.Core.Extensions.csproj", "{F773A78C-3D9B-4CAF-BB49-133324BC2840}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core.Extensions", "Core\SimpleStore.Core.Extensions\SimpleStore.Core.Extensions.csproj", "{F773A78C-3D9B-4CAF-BB49-133324BC2840}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Catalog.Domain", "Services\Catalog\SimpleStore.Services.Catalog.Domain\SimpleStore.Services.Catalog.Domain.csproj", "{1894D2A0-FB12-45E0-A7F5-FD26CFC049CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Catalog.Domain", "Services\Catalog\SimpleStore.Services.Catalog.Domain\SimpleStore.Services.Catalog.Domain.csproj", "{1894D2A0-FB12-45E0-A7F5-FD26CFC049CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{AEB22A07-6764-4CB4-A4EF-026A04FACDB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Applications.Identity.WebApp", "Applications\Identity\SimpleStore.Applications.Identity.WebApp\SimpleStore.Applications.Identity.WebApp.csproj", "{F15580A6-88D9-4DEA-80B5-7D165144C2F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Applications.Identity.WebApp", "Applications\Identity\SimpleStore.Applications.Identity.WebApp\SimpleStore.Applications.Identity.WebApp.csproj", "{F15580A6-88D9-4DEA-80B5-7D165144C2F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backoffice", "Backoffice", "{8A3825EB-EBAA-4845-B0E2-9BC5E8010505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Applications.Backoffice.WebApp", "Applications\Backoffice\SimpleStore.Applications.Backoffice.WebApp\SimpleStore.Applications.Backoffice.WebApp.csproj", "{9590AD47-E8BE-47AA-AF03-4AF8E6B677B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Applications.Backoffice.WebApp", "Applications\Backoffice\SimpleStore.Applications.Backoffice.WebApp\SimpleStore.Applications.Backoffice.WebApp.csproj", "{9590AD47-E8BE-47AA-AF03-4AF8E6B677B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Catalog.Application", "Services\Catalog\SimpleStore.Services.Catalog.Application\SimpleStore.Services.Catalog.Application.csproj", "{5549D695-59DB-445E-81A6-26D6280BC732}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Catalog.Application", "Services\Catalog\SimpleStore.Services.Catalog.Application\SimpleStore.Services.Catalog.Application.csproj", "{5549D695-59DB-445E-81A6-26D6280BC732}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Catalog.Objects", "Services\Catalog\SimpleStore.Services.Catalog.Objects\SimpleStore.Services.Catalog.Objects.csproj", "{28593F8D-861E-45FB-882A-61195C2141A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Catalog.Objects", "Services\Catalog\SimpleStore.Services.Catalog.Objects\SimpleStore.Services.Catalog.Objects.csproj", "{28593F8D-861E-45FB-882A-61195C2141A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Catalog.API", "Services\Catalog\SimpleStore.Services.Catalog.API\SimpleStore.Services.Catalog.API.csproj", "{D5B4297A-CDD5-4149-B984-B973F9654311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Catalog.API", "Services\Catalog\SimpleStore.Services.Catalog.API\SimpleStore.Services.Catalog.API.csproj", "{D5B4297A-CDD5-4149-B984-B973F9654311}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Catalog.Repository", "Services\Catalog\SimpleStore.Services.Catalog.Repository\SimpleStore.Services.Catalog.Repository.csproj", "{B17A4AB6-F6C7-4812-85F8-B6C44E2B7472}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Catalog.Repository", "Services\Catalog\SimpleStore.Services.Catalog.Repository\SimpleStore.Services.Catalog.Repository.csproj", "{B17A4AB6-F6C7-4812-85F8-B6C44E2B7472}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Core.EntityFrameworkCore.SqlServer", "Core\SimpleStore.Core.EntityFrameworkCore.SqlServer\SimpleStore.Core.EntityFrameworkCore.SqlServer.csproj", "{4B0C4A31-2300-468E-BE82-4EF09052149C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Core.EntityFrameworkCore", "Core\SimpleStore.Core.EntityFrameworkCore\SimpleStore.Core.EntityFrameworkCore.csproj", "{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,14 @@ Global
 		{B17A4AB6-F6C7-4812-85F8-B6C44E2B7472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B17A4AB6-F6C7-4812-85F8-B6C44E2B7472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B17A4AB6-F6C7-4812-85F8-B6C44E2B7472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B0C4A31-2300-468E-BE82-4EF09052149C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B0C4A31-2300-468E-BE82-4EF09052149C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B0C4A31-2300-468E-BE82-4EF09052149C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B0C4A31-2300-468E-BE82-4EF09052149C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +100,8 @@ Global
 		{28593F8D-861E-45FB-882A-61195C2141A4} = {E34F7229-975B-4D71-96CC-9A81BA3A1D67}
 		{D5B4297A-CDD5-4149-B984-B973F9654311} = {E34F7229-975B-4D71-96CC-9A81BA3A1D67}
 		{B17A4AB6-F6C7-4812-85F8-B6C44E2B7472} = {E34F7229-975B-4D71-96CC-9A81BA3A1D67}
+		{4B0C4A31-2300-468E-BE82-4EF09052149C} = {E031082D-4FB4-4C51-8C5C-CFE627DBB143}
+		{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9} = {E031082D-4FB4-4C51-8C5C-CFE627DBB143}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {376882E0-07F7-4C7C-9335-1A176DE4CF15}
