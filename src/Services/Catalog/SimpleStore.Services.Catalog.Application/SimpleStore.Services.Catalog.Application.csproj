@@ -7,19 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\Handlers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.2.2" />
     <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SimpleStore.Services.Catalog.Objects\SimpleStore.Services.Catalog.Objects.csproj" />
     <ProjectReference Include="..\SimpleStore.Services.Catalog.Repository\SimpleStore.Services.Catalog.Repository.csproj" />
   </ItemGroup>
 

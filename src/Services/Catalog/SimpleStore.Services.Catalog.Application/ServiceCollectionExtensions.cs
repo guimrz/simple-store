@@ -1,10 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using SimpleStore.Services.Catalog.Application.Commands;
 using SimpleStore.Services.Catalog.Application.Commands.Handlers;
+using SimpleStore.Services.Catalog.Application.Responses;
 using SimpleStore.Services.Catalog.Domain;
-using SimpleStore.Services.Catalog.Objects.Requests;
-using SimpleStore.Services.Catalog.Objects.Responses;
 
 namespace SimpleStore.Services.Catalog.Application
 {
@@ -22,8 +20,9 @@ namespace SimpleStore.Services.Catalog.Application
         {
             services.AddAutoMapper(configuration => 
             {
-                configuration.CreateMap<CreateItemRequest, CreateItemCommand>();
                 configuration.CreateMap<Item, ItemResponse>();
+                configuration.CreateMap<Brand, ItemBrandResponse>();
+                configuration.CreateMap<Brand, BrandResponse>();
             });
 
             return services;

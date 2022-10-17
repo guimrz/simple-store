@@ -16,8 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\SimpleStore.Core.EntityFrameworkCore.SqlServer\SimpleStore.Core.EntityFrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\Core\SimpleStore.Core.Mvc\SimpleStore.Core.Mvc.csproj" />
     <ProjectReference Include="..\SimpleStore.Services.Catalog.Application\SimpleStore.Services.Catalog.Application.csproj" />
-    <ProjectReference Include="..\SimpleStore.Services.Catalog.Objects\SimpleStore.Services.Catalog.Objects.csproj" />
   </ItemGroup>
 
 </Project>

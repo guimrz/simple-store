@@ -1,4 +1,4 @@
-﻿namespace SimpleStore.Core.Domain.Abstractions
+﻿namespace SimpleStore.Core.Entities
 {
     public interface IEntity<TIdentifier> : IEntity
     {

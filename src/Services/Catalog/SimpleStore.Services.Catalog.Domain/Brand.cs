@@ -1,4 +1,4 @@
-﻿using SimpleStore.Core.Domain.Abstractions;
+﻿using SimpleStore.Core.Entities;
 
 namespace SimpleStore.Services.Catalog.Domain
 {

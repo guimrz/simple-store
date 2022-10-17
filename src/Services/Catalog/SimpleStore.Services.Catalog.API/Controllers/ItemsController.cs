@@ -2,9 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SimpleStore.Services.Catalog.Application.Commands;
-using SimpleStore.Services.Catalog.Objects.Queries;
-using SimpleStore.Services.Catalog.Objects.Requests;
-using SimpleStore.Services.Catalog.Objects.Responses;
+using SimpleStore.Services.Catalog.Application.Queries;
+using SimpleStore.Services.Catalog.Application.Responses;
 
 namespace SimpleStore.Services.Catalog.API.Controllers
 {
@@ -13,20 +12,16 @@ namespace SimpleStore.Services.Catalog.API.Controllers
     public class ItemsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
 
-        public ItemsController(IMediator mediator, IMapper mapper)
+        public ItemsController(IMediator mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpPost]
         [ProducesResponseType(typeof(ItemResponse), 201)]
-        public async Task<IActionResult> CreateItemAsync([FromBody] CreateItemRequest request)
+        public async Task<IActionResult> CreateItemAsync([FromBody] CreateItemCommand command)
         {
-            var command = _mapper.Map<CreateItemCommand>(request);
-
             var result = await _mediator.Send(command);
 
             return new ObjectResult(result);
@@ -34,9 +29,11 @@ namespace SimpleStore.Services.Catalog.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ItemResponse[]), 200)]
-        public Task<IActionResult> GetItemsAsync([FromQuery]GetItemsQuery query)
+        public async Task<IActionResult> GetItemsAsync([FromQuery]GetItemsQuery query)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(query);
+
+            return new ObjectResult(result);
         }
 
         [HttpGet("{itemId:guid}")]

@@ -12,7 +12,7 @@ using SimpleStore.Services.Catalog.Repository;
 namespace SimpleStore.Services.Catalog.Repository.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    [Migration("20221017173643_InitialCreate")]
+    [Migration("20221017203910_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,9 @@ namespace SimpleStore.Services.Catalog.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -71,7 +74,20 @@ namespace SimpleStore.Services.Catalog.Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandId");
+
                     b.ToTable("Items", (string)null);
+                });
+
+            modelBuilder.Entity("SimpleStore.Services.Catalog.Domain.Item", b =>
+                {
+                    b.HasOne("SimpleStore.Services.Catalog.Domain.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
                 });
 #pragma warning restore 612, 618
         }

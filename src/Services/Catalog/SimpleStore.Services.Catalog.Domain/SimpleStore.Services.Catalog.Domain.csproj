@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\SimpleStore.Core.Domain\SimpleStore.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Core\SimpleStore.Core\SimpleStore.Core.csproj" />
   </ItemGroup>
 
 </Project>
