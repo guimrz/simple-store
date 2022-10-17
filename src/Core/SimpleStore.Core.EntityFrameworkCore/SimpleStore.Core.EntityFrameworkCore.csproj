@@ -10,7 +10,11 @@
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10" />
   </ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\SimpleStore.Core.Domain\SimpleStore.Core.Domain.csproj" />
+	</ItemGroup>
 
 </Project>

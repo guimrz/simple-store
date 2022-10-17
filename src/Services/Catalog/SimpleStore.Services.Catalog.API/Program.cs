@@ -1,11 +1,18 @@
+using SimpleStore.Core.EntityFrameworkCore.Extensions;
+using SimpleStore.Core.EntityFrameworkCore.SqlServer.Extensions;
+using SimpleStore.Services.Catalog.Application;
+using SimpleStore.Services.Catalog.Repository;
+using SimpleStore.Services.Catalog.Repository.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCatalogApplication();
+builder.Services.AddCatalogRepository();
+builder.Services.AddSqlDatabase<CatalogDbContext>(builder.Configuration);
 
 var app = builder.Build();
 
@@ -21,5 +28,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+await app.MigrateDatabaseAsync<CatalogDbContext>();
 
 app.Run();

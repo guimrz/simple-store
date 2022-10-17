@@ -2,7 +2,7 @@
 
 namespace SimpleStore.Services.Catalog.Domain
 {
-    public class Item : IEntity<Guid>
+    public class Brand : IEntity<Guid>
     {
         public Guid Id { get; set; }
 
@@ -18,7 +18,7 @@ namespace SimpleStore.Services.Catalog.Domain
         /// <summary>
         /// Initializes a new instance of the <see cref="Item"/> class.
         /// </summary>
-        protected Item()
+        protected Brand()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             //
@@ -30,7 +30,7 @@ namespace SimpleStore.Services.Catalog.Domain
         /// <param name="name">The name.</param>
         /// <param name="description">The description.</param>
         /// <exception cref="System.ArgumentException">The value cannot be null, empty or whitespaces. - name</exception>
-        public Item(string name, string? description)
+        public Brand(string name, string? description)
         {
             Name = string.IsNullOrWhiteSpace(nameof(name))
                 ? throw new ArgumentException("The value cannot be null, empty or whitespaces.", nameof(name))

@@ -33,9 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Catalo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Catalog.Repository", "Services\Catalog\SimpleStore.Services.Catalog.Repository\SimpleStore.Services.Catalog.Repository.csproj", "{B17A4AB6-F6C7-4812-85F8-B6C44E2B7472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Core.EntityFrameworkCore.SqlServer", "Core\SimpleStore.Core.EntityFrameworkCore.SqlServer\SimpleStore.Core.EntityFrameworkCore.SqlServer.csproj", "{4B0C4A31-2300-468E-BE82-4EF09052149C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core.EntityFrameworkCore.SqlServer", "Core\SimpleStore.Core.EntityFrameworkCore.SqlServer\SimpleStore.Core.EntityFrameworkCore.SqlServer.csproj", "{4B0C4A31-2300-468E-BE82-4EF09052149C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Core.EntityFrameworkCore", "Core\SimpleStore.Core.EntityFrameworkCore\SimpleStore.Core.EntityFrameworkCore.csproj", "{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core.EntityFrameworkCore", "Core\SimpleStore.Core.EntityFrameworkCore\SimpleStore.Core.EntityFrameworkCore.csproj", "{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Core.Domain", "Core\SimpleStore.Core.Domain\SimpleStore.Core.Domain.csproj", "{A7931284-A7CF-4981-86DC-03E7228927EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,10 @@ Global
 		{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7931284-A7CF-4981-86DC-03E7228927EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7931284-A7CF-4981-86DC-03E7228927EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7931284-A7CF-4981-86DC-03E7228927EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7931284-A7CF-4981-86DC-03E7228927EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +108,7 @@ Global
 		{B17A4AB6-F6C7-4812-85F8-B6C44E2B7472} = {E34F7229-975B-4D71-96CC-9A81BA3A1D67}
 		{4B0C4A31-2300-468E-BE82-4EF09052149C} = {E031082D-4FB4-4C51-8C5C-CFE627DBB143}
 		{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9} = {E031082D-4FB4-4C51-8C5C-CFE627DBB143}
+		{A7931284-A7CF-4981-86DC-03E7228927EC} = {E031082D-4FB4-4C51-8C5C-CFE627DBB143}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {376882E0-07F7-4C7C-9335-1A176DE4CF15}

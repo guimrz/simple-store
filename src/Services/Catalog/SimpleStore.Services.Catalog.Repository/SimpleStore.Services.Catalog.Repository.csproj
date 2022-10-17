@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\SimpleStore.Core.EntityFrameworkCore\SimpleStore.Core.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\SimpleStore.Services.Catalog.Domain\SimpleStore.Services.Catalog.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
