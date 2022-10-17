@@ -8,7 +8,16 @@ namespace SimpleStore.Services.Catalog.Repository.TypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Items").HasKey(p => p.Id);
+
+            builder.Property(brand => brand.Name)
+                .IsRequired()
+                .HasMaxLength(128);
+
+            builder.Property(brand => brand.Description);
+
+            builder.Property(brand => brand.CreationDate)
+                .IsRequired();
         }
     }
 }

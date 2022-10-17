@@ -6,7 +6,7 @@ namespace SimpleStore.Services.Catalog.Repository
 {
     public class CatalogUnitOfWork : UnitOfWork
     {
-        public CatalogUnitOfWork(DbContext dbContext) 
+        public CatalogUnitOfWork(CatalogDbContext dbContext) 
             : base(dbContext)
         {
             repositories.Add(typeof(Repository<Item>), new Repository<Item>(dbContext));
