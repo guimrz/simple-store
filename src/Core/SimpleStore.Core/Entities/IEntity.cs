@@ -9,6 +9,6 @@
     {
         DateTime CreationDate { get; }
 
-        DateTime? UpdateDate { get; }
+        DateTime? UpdateDate { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SimpleStore.Core.Mvc;
 using SimpleStore.Services.Catalog.Application.Commands;
 using SimpleStore.Services.Catalog.Application.Queries;
 using SimpleStore.Services.Catalog.Application.Responses;
@@ -19,6 +20,7 @@ namespace SimpleStore.Services.Catalog.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(BrandResponse), 201)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> CreateBrandAsync([FromBody] CreateBrandCommand command)
         {
             var result = await _mediator.Send(command);
@@ -28,7 +30,7 @@ namespace SimpleStore.Services.Catalog.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(BrandResponse[]), 200)]
-        public async Task<IActionResult> GetBrandsAsync([FromQuery]GetBrandsQuery query)
+        public async Task<IActionResult> GetBrandsAsync([FromQuery] GetBrandsQuery query)
         {
             var result = await _mediator.Send(query);
 
@@ -36,15 +38,25 @@ namespace SimpleStore.Services.Catalog.API.Controllers
         }
 
         [HttpPut("{brandId:guid}")]
-        public Task<IActionResult> UpdateBrandAsync(Guid brandId, object request)
+        [ProducesResponseType(typeof(BrandResponse), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 404)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        public async Task<IActionResult> UpdateBrandAsync(Guid brandId, [FromBody] UpdateBrandCommand command)
         {
-            throw new NotImplementedException();
+            command.BrandId = brandId;
+            var result = await _mediator.Send(command);
+
+            return new ObjectResult(result);
         }
 
         [HttpDelete("{brandId:guid}")]
-        public Task<IActionResult> DeleteBrandAsync(Guid brandId)
+        [ProducesResponseType(typeof(bool), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 404)]
+        public async Task<IActionResult> DeleteBrandAsync(Guid brandId)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(new DeleteBrandCommand { BrandId = brandId});
+
+            return new ObjectResult(result);
         }
     }
 }

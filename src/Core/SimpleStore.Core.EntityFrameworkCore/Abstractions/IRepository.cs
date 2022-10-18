@@ -5,7 +5,7 @@ namespace SimpleStore.Core.EntityFrameworkCore.Abstractions
     public interface IRepository<TEntity>
         where TEntity : IEntity
     {
-        IQueryable<TEntity> All { get; }
+        IQueryable<TEntity> Entities { get; }
 
         Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 

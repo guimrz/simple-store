@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{E34F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core.Extensions", "Core\SimpleStore.Core.Extensions\SimpleStore.Core.Extensions.csproj", "{F773A78C-3D9B-4CAF-BB49-133324BC2840}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Catalog.Domain", "Services\Catalog\SimpleStore.Services.Catalog.Domain\SimpleStore.Services.Catalog.Domain.csproj", "{1894D2A0-FB12-45E0-A7F5-FD26CFC049CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{AEB22A07-6764-4CB4-A4EF-026A04FACDB7}"
@@ -35,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core.EntityFram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core.EntityFrameworkCore", "Core\SimpleStore.Core.EntityFrameworkCore\SimpleStore.Core.EntityFrameworkCore.csproj", "{52FF23BE-1E2F-4C13-ADB4-3A63F555E4D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Core.Mvc", "Core\SimpleStore.Core.Mvc\SimpleStore.Core.Mvc.csproj", "{D7DEDFBB-CA93-4AE8-AB50-3775185C6F42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core.Mvc", "Core\SimpleStore.Core.Mvc\SimpleStore.Core.Mvc.csproj", "{D7DEDFBB-CA93-4AE8-AB50-3775185C6F42}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core", "Core\SimpleStore.Core\SimpleStore.Core.csproj", "{1132CD80-DEFC-4A83-B306-A5E10D2418A9}"
 EndProject
@@ -45,10 +43,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F773A78C-3D9B-4CAF-BB49-133324BC2840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F773A78C-3D9B-4CAF-BB49-133324BC2840}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F773A78C-3D9B-4CAF-BB49-133324BC2840}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F773A78C-3D9B-4CAF-BB49-133324BC2840}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1894D2A0-FB12-45E0-A7F5-FD26CFC049CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1894D2A0-FB12-45E0-A7F5-FD26CFC049CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1894D2A0-FB12-45E0-A7F5-FD26CFC049CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -96,7 +90,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E34F7229-975B-4D71-96CC-9A81BA3A1D67} = {49B65C2C-364F-4E8D-9C69-FC8C2F650810}
 		{3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F} = {49B65C2C-364F-4E8D-9C69-FC8C2F650810}
-		{F773A78C-3D9B-4CAF-BB49-133324BC2840} = {E031082D-4FB4-4C51-8C5C-CFE627DBB143}
 		{1894D2A0-FB12-45E0-A7F5-FD26CFC049CD} = {E34F7229-975B-4D71-96CC-9A81BA3A1D67}
 		{AEB22A07-6764-4CB4-A4EF-026A04FACDB7} = {5E8E324F-531E-4810-AB19-0EAE806AE67F}
 		{F15580A6-88D9-4DEA-80B5-7D165144C2F6} = {AEB22A07-6764-4CB4-A4EF-026A04FACDB7}

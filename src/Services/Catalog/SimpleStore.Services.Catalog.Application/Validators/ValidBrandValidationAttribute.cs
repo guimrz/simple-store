@@ -12,7 +12,7 @@ namespace SimpleStore.Services.Catalog.Application.Validators
         {
             bool result = validationContext.GetRequiredService<IUnitOfWork>()
                 .Repository<Brand>()
-                .All
+                .Entities
                 .AsNoTracking()
                 .Any(p => p.Id.Equals(value));
 

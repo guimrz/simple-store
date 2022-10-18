@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SimpleStore.Core.Mvc;
 using SimpleStore.Services.Catalog.Application.Commands;
 using SimpleStore.Services.Catalog.Application.Queries;
 using SimpleStore.Services.Catalog.Application.Responses;
@@ -20,6 +21,7 @@ namespace SimpleStore.Services.Catalog.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(ItemResponse), 201)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> CreateItemAsync([FromBody] CreateItemCommand command)
         {
             var result = await _mediator.Send(command);
@@ -29,7 +31,7 @@ namespace SimpleStore.Services.Catalog.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ItemResponse[]), 200)]
-        public async Task<IActionResult> GetItemsAsync([FromQuery]GetItemsQuery query)
+        public async Task<IActionResult> GetItemsAsync([FromQuery] GetItemsQuery query)
         {
             var result = await _mediator.Send(query);
 
@@ -38,22 +40,34 @@ namespace SimpleStore.Services.Catalog.API.Controllers
 
         [HttpGet("{itemId:guid}")]
         [ProducesResponseType(typeof(ItemResponse), 200)]
-        public Task<IActionResult> GetItemAsync(Guid itemId)
+        [ProducesResponseType(typeof(ErrorResponse), 404)]
+        public async Task<IActionResult> GetItemAsync(Guid itemId)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(new GetItemQuery { ItemId = itemId });
+
+            return new ObjectResult(result);
         }
 
         [HttpPut("{itemId:guid}")]
         [ProducesResponseType(typeof(ItemResponse), 200)]
-        public Task<IActionResult> UpdateItemAsync(Guid itemId)
+        [ProducesResponseType(typeof(ErrorResponse), 404)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        public async Task<IActionResult> UpdateItemAsync(Guid itemId, [FromBody] UpdateItemCommand updateItemCommand)
         {
-            throw new NotImplementedException();
+            updateItemCommand.ItemId = itemId;
+            var result = await _mediator.Send(updateItemCommand);
+
+            return new ObjectResult(result);
         }
 
         [HttpDelete("{itemId:guid}")]
-        public Task<IActionResult> DeleteItemAsync(Guid itemId)
+        [ProducesResponseType(typeof(bool), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 404)]
+        public async Task<IActionResult> DeleteItemAsync(Guid itemId)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(new DeleteItemCommand { ItemId = itemId });
+
+            return new ObjectResult(result);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SimpleStore.Core.EntityFrameworkCore
     {
         protected DbContext dbContext;
 
-        public IQueryable<TEntity> All => dbContext.Set<TEntity>();
+        public IQueryable<TEntity> Entities => dbContext.Set<TEntity>();
 
         public Repository(DbContext dbContext)
             => this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(Repository<TEntity>.dbContext));

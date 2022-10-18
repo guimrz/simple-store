@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SimpleStore.Core.EntityFrameworkCore.Abstractions;
+using SimpleStore.Core.Extensions;
 using SimpleStore.Services.Catalog.Application.Responses;
 using SimpleStore.Services.Catalog.Domain;
 
@@ -20,14 +21,14 @@ namespace SimpleStore.Services.Catalog.Application.Queries.Handlers
 
         public async Task<IEnumerable<ItemResponse>> Handle(GetItemsQuery request, CancellationToken cancellationToken)
         {
-            IQueryable<Item> items = _unitOfWork.Repository<Item>().All.Include(p => p.Brand).AsNoTracking();
+            IQueryable<Item> items = _unitOfWork.Repository<Item>().Entities.Include(p => p.Brand).AsNoTracking();
 
             if (!string.IsNullOrWhiteSpace(request.Search))
             {
                 items = items.Where(item => item.Name.Contains(request.Search.Trim()));
             }
 
-            items = items.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize);
+            items = items.Paginate(request.Page, request.PageSize);
 
             return _mapper.Map<IEnumerable<ItemResponse>>(await items.ToListAsync());
         }

@@ -5,36 +5,34 @@ using SimpleStore.Core.EntityFrameworkCore.Abstractions;
 using SimpleStore.Core.Exceptions;
 using SimpleStore.Services.Catalog.Application.Responses;
 using SimpleStore.Services.Catalog.Domain;
-using System.ComponentModel.DataAnnotations;
 
 namespace SimpleStore.Services.Catalog.Application.Commands.Handlers
 {
-    public class CreateItemCommandHandler : IRequestHandler<CreateItemCommand, ItemResponse>
+    public class UpdateBrandCommandHandler : IRequestHandler<UpdateBrandCommand, BrandResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CreateItemCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public UpdateBrandCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
-
-        public async Task<ItemResponse> Handle(CreateItemCommand request, CancellationToken cancellationToken)
+        public async Task<BrandResponse> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
         {
             Brand? brand = await _unitOfWork.Repository<Brand>().Entities.SingleOrDefaultAsync(brand => brand.Id == request.BrandId);
 
-            if(brand is null)
+            if (brand is null)
             {
-                throw new ArgumentException(nameof(request.BrandId), $"The brand with id '{request.BrandId}' could not be found.");
+                throw new NotFoundException($"The brand with id '{request.BrandId}' could not be found.");
             }
 
-            Item item = new Item(request.Name, request.Description, brand);
+            brand.Name = request.Name;
+            brand.Description = request.Description;
 
-            item = await _unitOfWork.Repository<Item>().AddAsync(item, cancellationToken);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
+            await _unitOfWork.SaveChangesAsync();
 
-            return _mapper.Map<ItemResponse>(item);
+            return _mapper.Map<BrandResponse>(brand);
         }
     }
 }

@@ -12,6 +12,6 @@
 
         public DateTime? UpdateDate { get; set; }
 
-        public ItemBrandResponse Brand { get; set; }
+        public ItemBrandResponse? Brand { get; set; }
     }
 }
