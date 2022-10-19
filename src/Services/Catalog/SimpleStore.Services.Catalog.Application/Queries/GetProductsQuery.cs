@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SimpleStore.Services.Catalog.Application.Queries
 {
-    public class GetItemsQuery : IRequest<IEnumerable<ItemResponse>>
+    public class GetProductsQuery : IRequest<IEnumerable<ProductResponse>>
     {
         public string? Search { get; set; }
 

@@ -16,7 +16,7 @@ namespace SimpleStore.Services.Catalog.Domain
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.        
         /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class.
+        /// Initializes a new instance of the <see cref="Product"/> class.
         /// </summary>
         protected Brand()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -25,7 +25,7 @@ namespace SimpleStore.Services.Catalog.Domain
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class.
+        /// Initializes a new instance of the <see cref="Product"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="description">The description.</param>

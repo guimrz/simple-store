@@ -4,9 +4,9 @@ using SimpleStore.Services.Catalog.Domain;
 
 namespace SimpleStore.Services.Catalog.Repository.TypeConfigurations
 {
-    public class ItemTypeConfiguration : IEntityTypeConfiguration<Item>
+    public class ItemTypeConfiguration : IEntityTypeConfiguration<Product>
     {
-        public void Configure(EntityTypeBuilder<Item> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.ToTable("Items").HasKey(p => p.Id);
 

@@ -9,7 +9,7 @@ namespace SimpleStore.Services.Catalog.Repository
         public CatalogUnitOfWork(CatalogDbContext dbContext) 
             : base(dbContext)
         {
-            repositories.Add(typeof(Repository<Item>), new Repository<Item>(dbContext));
+            repositories.Add(typeof(Repository<Product>), new Repository<Product>(dbContext));
             repositories.Add(typeof(Repository<Brand>), new Repository<Brand>(dbContext));
         }
     }

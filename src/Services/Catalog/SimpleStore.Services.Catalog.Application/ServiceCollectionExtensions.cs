@@ -11,7 +11,7 @@ namespace SimpleStore.Services.Catalog.Application
         public static IServiceCollection AddCatalogApplication(this IServiceCollection services)
         {
             services.AddCatalogMapping();
-            services.AddMediatR(typeof(CreateItemCommandHandler));
+            services.AddMediatR(typeof(CreateProductCommandHandler));
 
             return services;
         }
@@ -20,10 +20,11 @@ namespace SimpleStore.Services.Catalog.Application
         {
             services.AddAutoMapper(configuration => 
             {
-                configuration.CreateMap<Item, ItemResponse>();
-                configuration.CreateMap<Brand, ItemBrandResponse>();
+                configuration.CreateMap<Product, ProductResponse>();
+                configuration.CreateMap<Brand, ProductBrandResponse>();
                 configuration.CreateMap<Brand, BrandResponse>();
             });
+
 
             return services;
         }

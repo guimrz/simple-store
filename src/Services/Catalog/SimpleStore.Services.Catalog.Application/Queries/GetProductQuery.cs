@@ -3,8 +3,8 @@ using SimpleStore.Services.Catalog.Application.Responses;
 
 namespace SimpleStore.Services.Catalog.Application.Queries
 {
-    public class GetItemQuery : IRequest<ItemResponse>
+    public class GetProductQuery : IRequest<ProductResponse>
     {
-        public Guid ItemId { get; set; }
+        public Guid ProductId { get; set; }
     }
 }

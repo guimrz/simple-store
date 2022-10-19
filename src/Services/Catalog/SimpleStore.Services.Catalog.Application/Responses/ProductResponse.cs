@@ -1,6 +1,6 @@
 ﻿namespace SimpleStore.Services.Catalog.Application.Responses
 {
-    public class ItemResponse
+    public class ProductResponse
     {
         public Guid Id { get; set; }
 
@@ -12,6 +12,6 @@
 
         public DateTime? UpdateDate { get; set; }
 
-        public ItemBrandResponse? Brand { get; set; }
+        public ProductBrandResponse? Brand { get; set; }
     }
 }

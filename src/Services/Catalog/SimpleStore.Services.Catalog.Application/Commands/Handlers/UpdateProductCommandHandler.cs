@@ -8,23 +8,23 @@ using SimpleStore.Services.Catalog.Domain;
 
 namespace SimpleStore.Services.Catalog.Application.Commands.Handlers
 {
-    public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand, ItemResponse>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, ProductResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UpdateItemCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public UpdateProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
-        public async Task<ItemResponse> Handle(UpdateItemCommand request, CancellationToken cancellationToken)
+        public async Task<ProductResponse> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            Item? item = await _unitOfWork.Repository<Item>().Entities.Include(item => item.Brand).SingleOrDefaultAsync(item => item.Id == request.ItemId);
+            Product? product = await _unitOfWork.Repository<Product>().Entities.Include(product => product.Brand).SingleOrDefaultAsync(product => product.Id == request.ProductId);
 
-            if (item is null)
+            if (product is null)
             {
-                throw new NotFoundException($"The itemId with id '{request.ItemId}' could not be found.");
+                throw new NotFoundException($"The product with id '{request.ProductId}' could not be found.");
             }
 
 
@@ -35,13 +35,13 @@ namespace SimpleStore.Services.Catalog.Application.Commands.Handlers
                 throw new ArgumentException(nameof(request.BrandId), $"The brand with id '{request.BrandId}' could not be found.");
             }
 
-            item.Name = request.Name;
-            item.Description = request.Description;
-            item.Brand = brand;
+            product.Name = request.Name;
+            product.Description = request.Description;
+            product.Brand = brand;
 
             await _unitOfWork.SaveChangesAsync();
 
-            return _mapper.Map<ItemResponse>(item);
+            return _mapper.Map<ProductResponse>(product);
         }
     }
 }

@@ -8,7 +8,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SimpleStore.Services.Catalog.API.Controllers
 {
-    [Route("brands")]
+    [Route("api/brands")]
     public class BrandsController : ControllerBase
     {
         private readonly IMediator _mediator;

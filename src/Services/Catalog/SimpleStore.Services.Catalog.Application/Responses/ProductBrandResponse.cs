@@ -1,6 +1,6 @@
 ﻿namespace SimpleStore.Services.Catalog.Application.Responses
 {
-    public class ItemBrandResponse
+    public class ProductBrandResponse
     {
         public Guid Id { get; set; }
 

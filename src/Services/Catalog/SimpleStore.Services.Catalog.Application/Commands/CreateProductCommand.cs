@@ -2,15 +2,11 @@
 using SimpleStore.Services.Catalog.Application.Responses;
 using SimpleStore.Services.Catalog.Application.Validators;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace SimpleStore.Services.Catalog.Application.Commands
 {
-    public class UpdateItemCommand : IRequest<ItemResponse>
+    public class CreateProductCommand : IRequest<ProductResponse>
     {
-        [JsonIgnore]
-        public Guid ItemId { get; set; }
-
         [Required]
         [MaxLength(128)]
         public string Name { get; set; } = default!;

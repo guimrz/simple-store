@@ -41,13 +41,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{F1A6BD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{04F037D7-F1EF-448B-BFF1-B8AA4D78F13E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Basket.Application", "Services\Basket\SimpleStore.Services.Basket.Application\SimpleStore.Services.Basket.Application.csproj", "{4DB9E3BF-A4B8-4690-AC02-B5CA2546A9C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Basket.Application", "Services\Basket\SimpleStore.Services.Basket.Application\SimpleStore.Services.Basket.Application.csproj", "{4DB9E3BF-A4B8-4690-AC02-B5CA2546A9C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Basket.Domain", "Services\Basket\SimpleStore.Services.Basket.Domain\SimpleStore.Services.Basket.Domain.csproj", "{287871D7-E243-4968-8B76-604BD120AB10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Basket.Domain", "Services\Basket\SimpleStore.Services.Basket.Domain\SimpleStore.Services.Basket.Domain.csproj", "{287871D7-E243-4968-8B76-604BD120AB10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Basket.Repository", "Services\Basket\SimpleStore.Services.Basket.Repository\SimpleStore.Services.Basket.Repository.csproj", "{47F9BA4F-A8AF-4A62-970A-715408F1490C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Basket.Repository", "Services\Basket\SimpleStore.Services.Basket.Repository\SimpleStore.Services.Basket.Repository.csproj", "{47F9BA4F-A8AF-4A62-970A-715408F1490C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Basket.API", "Services\Basket\SimpleStore.Services.Basket.API\SimpleStore.Services.Basket.API.csproj", "{34492182-6FCB-41A8-B992-15A3D0B3F92E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Basket.API", "Services\Basket\SimpleStore.Services.Basket.API\SimpleStore.Services.Basket.API.csproj", "{34492182-6FCB-41A8-B992-15A3D0B3F92E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Catalog.Grpc", "Services\Catalog\SimpleStore.Services.Catalog.Grpc\SimpleStore.Services.Catalog.Grpc.csproj", "{2E096A84-6FF0-4F55-BBB9-EC264C87F65C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{34492182-6FCB-41A8-B992-15A3D0B3F92E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34492182-6FCB-41A8-B992-15A3D0B3F92E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34492182-6FCB-41A8-B992-15A3D0B3F92E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E096A84-6FF0-4F55-BBB9-EC264C87F65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E096A84-6FF0-4F55-BBB9-EC264C87F65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E096A84-6FF0-4F55-BBB9-EC264C87F65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E096A84-6FF0-4F55-BBB9-EC264C87F65C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,6 +142,7 @@ Global
 		{287871D7-E243-4968-8B76-604BD120AB10} = {3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}
 		{47F9BA4F-A8AF-4A62-970A-715408F1490C} = {3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}
 		{34492182-6FCB-41A8-B992-15A3D0B3F92E} = {3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}
+		{2E096A84-6FF0-4F55-BBB9-EC264C87F65C} = {E34F7229-975B-4D71-96CC-9A81BA3A1D67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {376882E0-07F7-4C7C-9335-1A176DE4CF15}

@@ -4,6 +4,7 @@ using SimpleStore.Core.EntityFrameworkCore.SqlServer.Extensions;
 using SimpleStore.Core.Mvc;
 using SimpleStore.Core.Mvc.Middlewares;
 using SimpleStore.Services.Catalog.Application;
+using SimpleStore.Services.Catalog.Grpc;
 using SimpleStore.Services.Catalog.Repository;
 using SimpleStore.Services.Catalog.Repository.Extensions;
 
@@ -15,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddCatalogApplication();
+builder.Services.AddCatalogGrpcServer();
 builder.Services.AddCatalogRepository();
 builder.Services.AddSqlDatabase<CatalogDbContext>(builder.Configuration);
 
@@ -34,6 +36,8 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCatalogGrpc();
 
 await app.MigrateDatabaseAsync<CatalogDbContext>();
 

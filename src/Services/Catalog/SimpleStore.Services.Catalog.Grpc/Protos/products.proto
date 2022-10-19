@@ -1,0 +1,25 @@
+﻿syntax = "proto3";
+option csharp_namespace = "SimpleStore.Services.Catalog.gRPC";
+
+package catalog;
+
+service ProductsService {
+    rpc GetProductsDetails(ProductsDetailsRequest) returns (ProductsDetailsReply);
+}
+
+message ProductsDetailsRequest {
+    repeated string products = 1;
+}
+
+message ProductsDetailsReply {
+    repeated ProductDetailsReply products = 1;
+}
+
+message ProductDetailsReply {
+    string product_id = 1;
+    int32 stock = 2;
+    float price = 3;
+    string name = 4;
+    string description = 5;
+    string imageUrl = 6;
+}

@@ -2,7 +2,7 @@
 
 namespace SimpleStore.Services.Catalog.Domain
 {
-    public class Item : IEntity<Guid>
+    public class Product : IEntity<Guid>
     {
         public Guid Id { get; set; }
 
@@ -19,12 +19,12 @@ namespace SimpleStore.Services.Catalog.Domain
         public Guid BrandId { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class.
+        /// Initializes a new instance of the <see cref="Product"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="description">The description.</param>
         /// <exception cref="System.ArgumentException">The value cannot be null, empty or whitespaces. - name</exception>
-        public Item(string name, string? description, Brand brand)
+        public Product(string name, string? description, Brand brand)
         {
             Name = string.IsNullOrWhiteSpace(nameof(name))
                 ? throw new ArgumentException("The value cannot be null, empty or whitespaces.", nameof(name))
@@ -40,9 +40,9 @@ namespace SimpleStore.Services.Catalog.Domain
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.        
         /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class.
+        /// Initializes a new instance of the <see cref="Product"/> class.
         /// </summary>
-        protected Item()
+        protected Product()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             //

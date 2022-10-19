@@ -8,27 +8,27 @@ using SimpleStore.Services.Catalog.Domain;
 
 namespace SimpleStore.Services.Catalog.Application.Queries.Handlers
 {
-    public class GetItemQueryHandler : IRequestHandler<GetItemQuery, ItemResponse>
+    public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ProductResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetItemQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetProductQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<ItemResponse> Handle(GetItemQuery request, CancellationToken cancellationToken)
+        public async Task<ProductResponse> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
-            Item? item = await _unitOfWork.Repository<Item>().Entities.Include(item => item.Brand).SingleOrDefaultAsync(item => item.Id == request.ItemId);
+            Product? product = await _unitOfWork.Repository<Product>().Entities.Include(product => product.Brand).SingleOrDefaultAsync(product => product.Id == request.ProductId);
 
-            if (item is null)
+            if (product is null)
             {
-                throw new NotFoundException($"The itemId with id '{request.ItemId}' could not be found.");
+                throw new NotFoundException($"The product with id '{request.ProductId}' could not be found.");
             }
 
-            return _mapper.Map<ItemResponse>(item);
+            return _mapper.Map<ProductResponse>(product);
         }
     }
 }
