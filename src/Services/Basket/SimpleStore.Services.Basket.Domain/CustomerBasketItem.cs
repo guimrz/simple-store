@@ -17,7 +17,7 @@
                 ? throw new ArgumentException("Invalid product id.", nameof(productId))
                 : productId;
 
-            Quantity = quantity >= 0
+            Quantity = quantity < 0
                 ? throw new ArgumentException("The quantity must be greater than zero.", nameof(quantity))
                 : quantity;
         }

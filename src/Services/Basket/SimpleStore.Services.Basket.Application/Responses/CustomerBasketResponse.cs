@@ -2,5 +2,6 @@
 {
     public class CustomerBasketResponse
     {
+        public IEnumerable<CustomerBasketItemResponse> Products { get; set; } = new List<CustomerBasketItemResponse>();
     }
 }

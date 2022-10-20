@@ -6,7 +6,7 @@ using SimpleStore.Services.Catalog.gRPC;
 
 namespace SimpleStore.Services.Catalog.Grpc.Services
 {
-    public class ProductsService : gRPC.ProductsService.ProductsServiceBase
+    public class ProductsService : gRPC.ProductsProtoService.ProductsProtoServiceBase
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -19,7 +19,11 @@ namespace SimpleStore.Services.Catalog.Grpc.Services
 
         public override Task<ProductsDetailsReply> GetProductsDetails(ProductsDetailsRequest request, ServerCallContext context)
         {
-            var products = _unitOfWork.Repository<Product>().Entities.Where(product => request.Products.Any(p => p.Equals(product.Id.ToString(), StringComparison.OrdinalIgnoreCase)));
+            var p = request.Products.Select(p => new Guid(p));
+
+            var products = _unitOfWork.Repository<Product>()
+                .Entities
+                .Where(product => p.Contains(product.Id));
 
             var reply = new ProductsDetailsReply();
             reply.Products.Add(products.Select(product => _mapper.Map<ProductDetailsReply>(product)));

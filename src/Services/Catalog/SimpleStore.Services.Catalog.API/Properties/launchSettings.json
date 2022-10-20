@@ -11,28 +11,13 @@
   "profiles": {
     "SimpleStore.Services.Catalog.API": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:7128;http://localhost:5128",
+      "applicationUrl": "https://localhost:61012;http://localhost:60012",
       "dotnetRunMessages": true
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "Docker": {
-      "commandName": "Docker",
-      "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
-      "publishAllPorts": true,
-      "useSSL": true
     }
   }
 }

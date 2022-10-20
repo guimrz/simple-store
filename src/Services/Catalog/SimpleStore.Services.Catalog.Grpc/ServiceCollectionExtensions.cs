@@ -1,5 +1,4 @@
-﻿using Google.Protobuf.Collections;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SimpleStore.Services.Catalog.Domain;
 using SimpleStore.Services.Catalog.gRPC;
 

@@ -1,4 +1,6 @@
 using SimpleStore.Services.Basket.Application;
+using SimpleStore.Services.Basket.Grpc;
+using SimpleStore.Services.Basket.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddBasketApplication();
+builder.Services.AddBasketGrpc();
+builder.Services.AddBasketRepository();
+builder.Services.AddDistributedMemoryCache();
 
 var app = builder.Build();
 

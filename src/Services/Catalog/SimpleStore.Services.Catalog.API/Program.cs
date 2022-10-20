@@ -38,7 +38,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseCatalogGrpc();
-
 await app.MigrateDatabaseAsync<CatalogDbContext>();
 
 app.Run();

@@ -1,8 +1,6 @@
-﻿using SimpleStore.Core.Entities;
-
-namespace SimpleStore.Services.Basket.Domain
+﻿namespace SimpleStore.Services.Basket.Domain
 {
-    public class CustomerBasket : IEntity
+    public class CustomerBasket
     {
         private List<CustomerBasketItem> _items = new List<CustomerBasketItem>();
 
