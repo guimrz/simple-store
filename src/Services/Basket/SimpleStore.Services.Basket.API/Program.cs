@@ -1,3 +1,4 @@
+using SimpleStore.Core.Mvc.Middlewares;
 using SimpleStore.Services.Basket.Application;
 using SimpleStore.Services.Basket.Grpc;
 using SimpleStore.Services.Basket.Repository;
@@ -23,6 +24,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 

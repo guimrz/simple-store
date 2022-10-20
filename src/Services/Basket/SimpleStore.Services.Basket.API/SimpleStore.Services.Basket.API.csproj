@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\SimpleStore.Core.Mvc\SimpleStore.Core.Mvc.csproj" />
     <ProjectReference Include="..\SimpleStore.Services.Basket.Application\SimpleStore.Services.Basket.Application.csproj" />
     <ProjectReference Include="..\SimpleStore.Services.Basket.Grpc\SimpleStore.Services.Basket.Grpc.csproj" />
     <ProjectReference Include="..\SimpleStore.Services.Basket.Repository\SimpleStore.Services.Basket.Repository.csproj" />
