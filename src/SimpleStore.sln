@@ -55,6 +55,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Basket
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Basket.Services", "Services\Basket\SimpleStore.Services.Basket.Services\SimpleStore.Services.Basket.Services.csproj", "{DBEF19E7-FEA3-4C39-A3A7-0B1F57320AFC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{350AF1CE-C408-4191-80A0-BEC92411C4F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Gateway", "Gateway\SimpleStore.Gateway\SimpleStore.Gateway.csproj", "{D0CE60BE-E8A8-443F-B034-911718908B69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +133,10 @@ Global
 		{DBEF19E7-FEA3-4C39-A3A7-0B1F57320AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBEF19E7-FEA3-4C39-A3A7-0B1F57320AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBEF19E7-FEA3-4C39-A3A7-0B1F57320AFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0CE60BE-E8A8-443F-B034-911718908B69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0CE60BE-E8A8-443F-B034-911718908B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0CE60BE-E8A8-443F-B034-911718908B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0CE60BE-E8A8-443F-B034-911718908B69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -157,6 +165,7 @@ Global
 		{2E096A84-6FF0-4F55-BBB9-EC264C87F65C} = {E34F7229-975B-4D71-96CC-9A81BA3A1D67}
 		{9781D424-E153-4A2B-85C4-492043577904} = {3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}
 		{DBEF19E7-FEA3-4C39-A3A7-0B1F57320AFC} = {3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}
+		{D0CE60BE-E8A8-443F-B034-911718908B69} = {350AF1CE-C408-4191-80A0-BEC92411C4F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {376882E0-07F7-4C7C-9335-1A176DE4CF15}

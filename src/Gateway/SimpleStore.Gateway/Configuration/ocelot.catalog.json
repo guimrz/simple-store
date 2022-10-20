@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json.schemastore.org/ocelot",
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/products{everything}",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/api/products{everything}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 61012
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/brands{everything}",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/api/brands{everything}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 61012
+        }
+      ]
+    }
+  ]
+}

@@ -487,3 +487,4 @@ MigrationBackup/
 
 
 # End of https://www.gitignore.io/api/csharp,dotnetcore,aspnetcore
+/src/Gateway/SimpleStore.Gateway/ocelot.json

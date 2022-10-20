@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json.schemastore.org/ocelot",
+  "Routes": [   
+    {
+      "DownstreamPathTemplate": "/api/basket/{everything}",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/api/basket/{everything}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 61011
+        }
+      ]
+    }
+  ]
+}
