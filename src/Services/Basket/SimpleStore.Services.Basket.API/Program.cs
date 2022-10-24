@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using SimpleStore.Core.Mvc.Middlewares;
 using SimpleStore.Services.Basket.Application;
 using SimpleStore.Services.Basket.Grpc;
@@ -15,17 +16,16 @@ builder.Services.AddBasketGrpc();
 builder.Services.AddBasketRepository();
 builder.Services.AddDistributedMemoryCache();
 
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
-    {
-        options.MapInboundClaims = false;
-        options.Authority = builder.Configuration.GetValue<string>("IdentityConfiguration:Authority");
-        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-        {
-            ValidateAudience = false
-        };
-        options.RequireHttpsMetadata = builder.Configuration.GetValue<bool>("IdentityConfiguration:RequireHttpsMetadata");
-    });
+builder.Services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, builder.Configuration.GetSection("JwtBearer"));
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options => 
+{
+    builder.Configuration.Bind("JwtBearer", options);
+});
 
 builder.Services.AddAuthorization(options =>
 {

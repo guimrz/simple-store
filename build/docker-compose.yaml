@@ -8,81 +8,91 @@ services:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "r00t.R00T"
     networks: 
-      - corp
-    restart: unless-stopped
+      - simple-store-network
     expose: 
       - '1433'
     ports:
-      - "60001:1433"
+      - "1433:1433"     
       
-  consul_server:
-    image: hashicorp/consul:latest
-    container_name: consul_server
-    networks:
-      - corp
-    ports:
-      - "8500:8500"
-      - "8600:8600/tcp"
-      - "8600:8600/udp"
-
   gateway:
     image: gateway:latest
     container_name: gateway
-    depends_on:
-      - consul_server
     build: 
       context: ../src/
       dockerfile: Gateway/SimpleStore.Gateway/Dockerfile
     networks: 
-      - corp
+      - simple-store-network
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
-      - GlobalConfiguration__ServiceDiscoveryProvider__Host=consul_server
-      - GlobalConfiguration__ServiceDiscoveryProvider__Scheme=http
-      - GlobalConfiguration__ServiceDiscoveryProvider__Port=8500
     expose: 
-      - '80'
+      - 80
     ports: 
-      - "60000:80"
+      - "60010:80"
 
-# Services
-  identity_service:
-    image: identity_service:latest
-    container_name: identity_service
+  identity_server:
+    image: identity_server:latest
+    container_name: identity_server
+    depends_on: 
+      - sqlserver
     build: 
       context: ../src/
-      dockerfile: Services/Identity/MyStore.Services.Identity.API/Dockerfile
+      dockerfile: Applications/Identity/SimpleStore.Applications.Identity.WebApp/Dockerfile
     networks: 
-      - corp
+      - simple-store-network
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Data Source=sqlserver;Initial Catalog=master_Identity;User ID=SA;Password=r00t.R00T
     expose: 
-      - '80'
+      - 80
     ports: 
-      - "60010:80"
+      - "60000:80"
+
+  basket_service:
+    image: basket_service:latest
+    container_name: basket_service
+    build: 
+      context: ../src/
+      dockerfile: Services/Basket/SimpleStore.Services.Basket.API/Dockerfile
+    networks: 
+      - simple-store-network
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development    
+      - GrpcClients__Catalog__Address=https://catalog_service
+      - JwtBearer__Authority=http://identity_server
+      - JwtBearer__RequireHttpsMetadata=false
+    expose: 
+      - 80
+    ports: 
+      - "60011:80"
 
   catalog_service:
     image: catalog:latest
     container_name: catalog_service
-    depends_on:
-      - consul_server
+    depends_on: 
+      - sqlserver
     build: 
       context: ../src/
       dockerfile: Services/Catalog/SimpleStore.Services.Catalog.API/Dockerfile
     networks: 
-      - corp
+      - simple-store-network
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
-      - ServiceDiscovery__Address=catalog_service
-      - ServiceDiscovery__Port=80
-      - ServiceDiscovery__Consul__Address=http://consul_server:8500
+      - ASPNETCORE_URLS=http://+:80;https://+:443
+      # - Kestrel__Endpoints__gRPC__Url=https://0.0.0.0:443
+      # - Kestrel__Endpoints__gRPC__Certificate__Path=/cert/localhost.pfx      
+      # - Kestrel__Endpoints__gRPC__Certificate__Password=crypticpassword
+      - Kestrel__Certificates__Default__Password=crypticpassword
+      - Kestrel__Certificates__Default__Path=/cert/localhost.pfx
       - ConnectionStrings__DefaultConnection=Data Source=sqlserver;Initial Catalog=master_Catalog;User ID=SA;Password=r00t.R00T
     expose: 
-      - '80'
+      - 80
+      - 443
     ports: 
-      - "60011:80"
+      - "60012:80"
+      - "61012:443"
+    volumes: 
+      - ./cert/:/cert/:ro
 
 networks:
-  corp:
-    driver: "bridge"
+  simple-store-network:
+    driver: "host"
