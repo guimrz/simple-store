@@ -1,43 +1,55 @@
-﻿using Serilog;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SimpleStore.Applications.Identity.WebApp;
+using SimpleStore.Applications.Identity.WebApp.Data;
+using SimpleStore.Applications.Identity.WebApp.Models;
+using SimpleStore.Core.EntityFrameworkCore.Extensions;
+using System.Net;
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .CreateBootstrapLogger();
+var builder = WebApplication.CreateBuilder(args);
 
-Log.Information("Starting up");
+builder.Services.AddRazorPages();
 
-try
-{
-    var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    builder.Host.UseSerilog((ctx, lc) => lc
-        .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
-        .Enrich.FromLogContext()
-        .ReadFrom.Configuration(ctx.Configuration));
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
-    var app = builder
-        .ConfigureServices()
-        .ConfigurePipeline();
-
-    // this seeding is only for the template to bootstrap the DB and users.
-    // in production you will likely want a different approach.
-    if (args.Contains("/seed"))
+builder.Services
+    .AddIdentityServer(options =>
     {
-        Log.Information("Seeding database...");
-        SeedData.EnsureSeedData(app);
-        Log.Information("Done seeding database. Exiting.");
-        return;
-    }
+        options.Events.RaiseErrorEvents = true;
+        options.Events.RaiseInformationEvents = true;
+        options.Events.RaiseFailureEvents = true;
+        options.Events.RaiseSuccessEvents = true;
 
-    app.Run();
-}
-catch (Exception ex) when (ex.GetType().Name is not "StopTheHostException") // https://github.com/dotnet/runtime/issues/60600
+        options.EmitStaticAudienceClaim = true;
+    })
+    .AddInMemoryIdentityResources(Config.IdentityResources)
+    .AddInMemoryApiScopes(Config.ApiScopes)
+    .AddInMemoryClients(Config.Clients)
+    .AddAspNetIdentity<ApplicationUser>();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    Log.Fatal(ex, "Unhandled exception");
+    app.UseDeveloperExceptionPage();
 }
-finally
-{
-    Log.Information("Shut down complete");
-    Log.CloseAndFlush();
-}
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+app.UseRouting();
+app.UseIdentityServer();
+app.UseAuthorization();
+
+app.MapRazorPages()
+    .RequireAuthorization();
+
+SeedData.EnsureSeedData(app);
+await app.MigrateDatabaseAsync<ApplicationDbContext>();
+
+app.Run();

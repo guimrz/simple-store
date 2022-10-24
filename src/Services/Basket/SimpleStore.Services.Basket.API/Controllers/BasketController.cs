@@ -1,11 +1,14 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SimpleStore.Services.Basket.Application.Commands;
 using SimpleStore.Services.Basket.Application.Queries;
 
 namespace SimpleStore.Services.Basket.API.Controllers
 {
+    [ApiController]
     [Route("api/basket")]
+    [Authorize("UserOnly")]
     public class BasketController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -15,22 +18,20 @@ namespace SimpleStore.Services.Basket.API.Controllers
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        [HttpGet("{buyerId:guid}")]
-        public async Task<IActionResult> GetBasketAsync(Guid buyerId)
+        [HttpGet]
+        public async Task<IActionResult> GetBasketAsync()
         {
-            // TODO: Get the buyer id from session.
+            Guid buyerId = new Guid(HttpContext.User.Claims.Single(p => p.Type == "sub").Value);
 
             var result = await _mediator.Send(new GetBasketQuery { BuyerId = buyerId });
 
             return new ObjectResult(result);
         }
 
-        [HttpPost("{buyerId:guid}")]
-        public async Task<IActionResult> UpdateBasketAsync(Guid buyerId, [FromBody]UpdateBasketCommand command)
+        [HttpPost]
+        public async Task<IActionResult> UpdateBasketAsync([FromBody] UpdateBasketCommand command)
         {
-            // TODO: Get the buyer id from session.
-
-            command.BuyerId = buyerId;
+            command.BuyerId = new Guid(HttpContext.User.Claims.Single(p => p.Type == "sub").Value);
 
             var result = await _mediator.Send(command);
 

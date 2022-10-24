@@ -53,11 +53,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Catalo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Basket.Grpc", "Services\Basket\SimpleStore.Services.Basket.Grpc\SimpleStore.Services.Basket.Grpc.csproj", "{9781D424-E153-4A2B-85C4-492043577904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Services.Basket.Services", "Services\Basket\SimpleStore.Services.Basket.Services\SimpleStore.Services.Basket.Services.csproj", "{DBEF19E7-FEA3-4C39-A3A7-0B1F57320AFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Basket.Services", "Services\Basket\SimpleStore.Services.Basket.Services\SimpleStore.Services.Basket.Services.csproj", "{DBEF19E7-FEA3-4C39-A3A7-0B1F57320AFC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{350AF1CE-C408-4191-80A0-BEC92411C4F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Gateway", "Gateway\SimpleStore.Gateway\SimpleStore.Gateway.csproj", "{D0CE60BE-E8A8-443F-B034-911718908B69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Gateway", "Gateway\SimpleStore.Gateway\SimpleStore.Gateway.csproj", "{D0CE60BE-E8A8-443F-B034-911718908B69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

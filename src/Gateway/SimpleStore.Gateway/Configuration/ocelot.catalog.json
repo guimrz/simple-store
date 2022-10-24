@@ -3,7 +3,7 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/products{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/products{everything}",
       "UpstreamHttpMethod": [
         "Get",
@@ -14,13 +14,13 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 61012
+          "Port": 60012
         }
       ]
     },
     {
       "DownstreamPathTemplate": "/api/brands{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/brands{everything}",
       "UpstreamHttpMethod": [
         "Get",
@@ -31,7 +31,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 61012
+          "Port": 60012
         }
       ]
     }
