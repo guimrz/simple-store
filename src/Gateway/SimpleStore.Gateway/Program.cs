@@ -1,19 +1,51 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Consul;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
 
-// Add services to the container.
-builder.WebHost.ConfigureAppConfiguration((hostBuilderContext, configurationBuilder) =>
+Log.Information("Starting up...");
+
+try
 {
-    configurationBuilder.AddOcelot("Configuration", hostBuilderContext.HostingEnvironment);
-    configurationBuilder.AddEnvironmentVariables();
-});
-builder.Services.AddOcelot().AddConsul();
+    var builder = WebApplication.CreateBuilder(args);
 
-var app = builder.Build();
+    // Configure app configuration
+    builder.WebHost.ConfigureAppConfiguration((hostBuilderContext, configurationBuilder) =>
+    {
+        configurationBuilder.AddOcelot("Configuration", hostBuilderContext.HostingEnvironment);
+        configurationBuilder.AddEnvironmentVariables();
+    });
 
-// Configure the HTTP request pipeline.
-app.UseOcelot();
-app.Run();
+    // Configure logger
+    builder.Host.UseSerilog((context, configuration) =>
+    {
+        configuration.WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+            .Enrich.FromLogContext()
+            .ReadFrom.Configuration(context.Configuration);
+    });
+
+    builder.Services.AddOcelot()
+        .AddConsul();
+
+    var app = builder.Build();
+
+    // Configure serilog for requests
+    app.UseSerilogRequestLogging();
+
+    // Configure the HTTP request pipeline.
+    app.UseOcelot();
+    app.Run();
+}
+catch (Exception exception)
+{
+    Log.Fatal(exception, "Unhandled exception");
+}
+finally
+{
+    Log.Information("Shutdown completed");
+    Log.CloseAndFlush();
+}

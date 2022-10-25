@@ -1,28 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>bdc2b501-bd57-43c1-838a-0e26e35b8e8a</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..\..</DockerfileContext>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>bdc2b501-bd57-43c1-838a-0e26e35b8e8a</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..</DockerfileContext>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+		<PackageReference Include="Serilog" Version="2.12.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\SimpleStore.Core.Mvc\SimpleStore.Core.Mvc.csproj" />
-    <ProjectReference Include="..\..\..\Core\SimpleStore.Core.ServiceRegistry.Consul\SimpleStore.Core.ServiceRegistry.Consul.csproj" />
-    <ProjectReference Include="..\SimpleStore.Services.Basket.Application\SimpleStore.Services.Basket.Application.csproj" />
-    <ProjectReference Include="..\SimpleStore.Services.Basket.Grpc\SimpleStore.Services.Basket.Grpc.csproj" />
-    <ProjectReference Include="..\SimpleStore.Services.Basket.Repository\SimpleStore.Services.Basket.Repository.csproj" />
-    <ProjectReference Include="..\SimpleStore.Services.Basket.Services\SimpleStore.Services.Basket.Services.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Serilog" Version="2.10.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="5.0.1" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\SimpleStore.Core.Mvc\SimpleStore.Core.Mvc.csproj" />
+		<ProjectReference Include="..\..\..\Core\SimpleStore.Core.ServiceRegistry.Consul\SimpleStore.Core.ServiceRegistry.Consul.csproj" />
+		<ProjectReference Include="..\SimpleStore.Services.Basket.Application\SimpleStore.Services.Basket.Application.csproj" />
+		<ProjectReference Include="..\SimpleStore.Services.Basket.Grpc\SimpleStore.Services.Basket.Grpc.csproj" />
+		<ProjectReference Include="..\SimpleStore.Services.Basket.Repository\SimpleStore.Services.Basket.Repository.csproj" />
+		<ProjectReference Include="..\SimpleStore.Services.Basket.Services\SimpleStore.Services.Basket.Services.csproj" />
+	</ItemGroup>
 
 </Project>
