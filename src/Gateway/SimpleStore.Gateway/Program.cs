@@ -1,6 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-
+using Ocelot.Provider.Consul;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,13 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureAppConfiguration((hostBuilderContext, configurationBuilder) =>
 {
     configurationBuilder.AddOcelot("Configuration", hostBuilderContext.HostingEnvironment);
+    configurationBuilder.AddEnvironmentVariables();
 });
-builder.Services.AddOcelot();
+builder.Services.AddOcelot().AddConsul();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
 app.UseOcelot();
 app.Run();

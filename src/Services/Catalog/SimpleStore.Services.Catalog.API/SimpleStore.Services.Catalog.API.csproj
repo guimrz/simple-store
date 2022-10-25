@@ -11,12 +11,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Core\SimpleStore.Core.EntityFrameworkCore.SqlServer\SimpleStore.Core.EntityFrameworkCore.SqlServer.csproj" />
 		<ProjectReference Include="..\..\..\Core\SimpleStore.Core.Mvc\SimpleStore.Core.Mvc.csproj" />
+		<ProjectReference Include="..\..\..\Core\SimpleStore.Core.ServiceRegistry.Consul\SimpleStore.Core.ServiceRegistry.Consul.csproj" />
 		<ProjectReference Include="..\SimpleStore.Services.Catalog.Application\SimpleStore.Services.Catalog.Application.csproj" />
 		<ProjectReference Include="..\SimpleStore.Services.Catalog.Grpc\SimpleStore.Services.Catalog.Grpc.csproj" />
 		<ProjectReference Include="..\SimpleStore.Services.Catalog.Repository\SimpleStore.Services.Catalog.Repository.csproj" />
@@ -24,10 +25,12 @@
 		<PackageReference Include="Google.Protobuf" Version="3.21.8" />
 		<PackageReference Include="Grpc.AspNetCore.Server" Version="2.49.0" />
 		<PackageReference Include="Grpc.AspNetCore" Version="2.49.0" />
-		<PackageReference Include="Grpc.Tools" Version="2.49.0">
+		<PackageReference Include="Grpc.Tools" Version="2.50.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties appsettings_1development_1json__JsonSchema="https://json.schemastore.org/appsettings.json" /></VisualStudio></ProjectExtensions>
 
 </Project>

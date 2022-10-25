@@ -11,12 +11,7 @@
         "Put",
         "Delete"
       ],
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 60012
-        }
-      ]
+      "ServiceName": "catalog-service"
     },
     {
       "DownstreamPathTemplate": "/api/brands{everything}",
@@ -28,12 +23,7 @@
         "Put",
         "Delete"
       ],
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 60012
-        }
-      ]
+      "ServiceName": "catalog-service"     
     }
   ]
 }

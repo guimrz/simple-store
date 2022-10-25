@@ -9,12 +9,7 @@
         "Get",
         "Post"
       ],
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 60011
-        }
-      ]
+      "ServiceName": "basket-service"
     },
     {
       "DownstreamPathTemplate": "/api/basket",
@@ -24,12 +19,7 @@
         "Get",
         "Post"
       ],
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 60011
-        }
-      ]
+      "ServiceName": "basket-service"
     }
   ]
 }
