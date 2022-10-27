@@ -4,6 +4,7 @@ using Serilog;
 using SimpleStore.Applications.Identity.WebApp;
 using SimpleStore.Applications.Identity.WebApp.Data;
 using SimpleStore.Applications.Identity.WebApp.Models;
+using SimpleStore.Core.EntityFrameworkCore.Abstractions;
 using SimpleStore.Core.EntityFrameworkCore.Extensions;
 
 Log.Logger = new LoggerConfiguration()
@@ -34,6 +35,7 @@ try
     builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
+    builder.Services.AddTransient<ISeedingService, IdentitySeedingService>();
 
     builder.Services
         .AddIdentityServer(options =>
@@ -71,8 +73,8 @@ try
     // Configure health checks
     app.UseHealthChecks("/health/status");
 
-    SeedData.EnsureSeedData(app);
     await app.MigrateDatabaseAsync<ApplicationDbContext>();
+    await app.SeedDatabaseAsync();
 
     app.Run();
 }
