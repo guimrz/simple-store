@@ -29,7 +29,9 @@ namespace SimpleStore.Services.Catalog.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new BrandTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new ItemTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductCategoryTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryTypeConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

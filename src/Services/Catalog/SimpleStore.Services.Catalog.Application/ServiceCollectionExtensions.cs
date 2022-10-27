@@ -23,6 +23,7 @@ namespace SimpleStore.Services.Catalog.Application
                 configuration.CreateMap<Product, ProductResponse>();
                 configuration.CreateMap<Brand, ProductBrandResponse>();
                 configuration.CreateMap<Brand, BrandResponse>();
+                configuration.CreateMap<Category, CategoryResponse>();
             });
 
 

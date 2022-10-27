@@ -3,11 +3,15 @@ using SimpleStore.Core.Extensions;
 
 namespace SimpleStore.Services.Catalog.Domain
 {
-    public class Brand : IEntity<Guid>
+    public class Category : IEntity<Guid>
     {
         private string _name = default!;
 
-        public Guid Id { get; set; }
+        public Guid Id { get; protected set; }
+
+        public DateTime CreationDate { get; protected set; }
+
+        public DateTime? UpdateDate { get; set; }
 
         public string Name
         {
@@ -19,19 +23,14 @@ namespace SimpleStore.Services.Catalog.Domain
             }
         }
 
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
-        public DateTime CreationDate { get; set; }
-
-        public DateTime? UpdateDate { get; set; }
-
-        public Brand(string name, string? description)
+        public Category(string name, string description)
         {
+            Id = Guid.NewGuid();
+            CreationDate = DateTime.UtcNow;
             Name = name;
             Description = description;
-
-            CreationDate = DateTime.UtcNow;
-            Id = Guid.NewGuid();
         }
     }
 }

@@ -106,6 +106,8 @@ services:
       - ASPNETCORE_URLS=http://+:80;https://+:443
       - Kestrel__Certificates__Default__Password=crypticpassword
       - Kestrel__Certificates__Default__Path=/cert/localhost.pfx
+      - JwtBearer__Authority=http://identity_server
+      - JwtBearer__RequireHttpsMetadata=false
       - ConnectionStrings__DefaultConnection=Data Source=sqlserver;Initial Catalog=master_Catalog;User ID=SA;Password=r00t.R00T
       - ServiceRegistry__Address=catalog_service
       - ServiceRegistry__Port=80

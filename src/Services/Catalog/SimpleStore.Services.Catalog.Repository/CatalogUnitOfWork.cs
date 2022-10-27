@@ -11,6 +11,7 @@ namespace SimpleStore.Services.Catalog.Repository
         {
             repositories.Add(typeof(Repository<Product>), new Repository<Product>(dbContext));
             repositories.Add(typeof(Repository<Brand>), new Repository<Brand>(dbContext));
+            repositories.Add(typeof(Repository<Category>), new Repository<Category>(dbContext));
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SimpleStore.Core.Exceptions;
 using System.ComponentModel.DataAnnotations;
@@ -47,6 +49,9 @@ namespace SimpleStore.Core.Mvc.Middlewares
             {
                 code = HttpStatusCode.InternalServerError;
                 error.Message = "Internal server error.";
+
+                var logger = context.RequestServices.GetRequiredService<ILogger<ExceptionMiddleware>>();
+                logger.LogError(exception, exception.Message);
             }
 
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")!.Equals("development", StringComparison.OrdinalIgnoreCase))

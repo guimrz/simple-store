@@ -6,11 +6,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SimpleStore.Services.Catalog.Application.Validators
 {
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class ValidBrandValidationAttribute : ValidationAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            bool result = validationContext.GetRequiredService<IUnitOfWork>()
+            bool result = value == null || validationContext.GetRequiredService<IUnitOfWork>()
                 .Repository<Brand>()
                 .Entities
                 .AsNoTracking()

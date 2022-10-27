@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SimpleStore.Core.Mvc;
 using SimpleStore.Services.Catalog.Application.Commands;
@@ -9,6 +10,7 @@ namespace SimpleStore.Services.Catalog.API.Controllers
 {
     [ApiController]
     [Route("api/products")]
+    [Authorize("UserOnly")]
     public class ProductsController : ControllerBase
     {
         private readonly IMediator _mediator;

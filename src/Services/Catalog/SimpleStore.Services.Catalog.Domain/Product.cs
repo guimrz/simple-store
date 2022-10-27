@@ -3,9 +3,10 @@ using SimpleStore.Core.Extensions;
 
 namespace SimpleStore.Services.Catalog.Domain
 {
-    public class Brand : IEntity<Guid>
+    public class Product : IEntity<Guid>
     {
         private string _name = default!;
+        private List<ProductCategory> _categories = new List<ProductCategory>();
 
         public Guid Id { get; set; }
 
@@ -14,7 +15,7 @@ namespace SimpleStore.Services.Catalog.Domain
             get => _name;
             set
             {
-                value.ThrowIfNullOrWhitespaces(nameof(Name));
+                 value.ThrowIfNullOrWhitespaces(nameof(Name));
                 _name = value;
             }
         }
@@ -25,7 +26,16 @@ namespace SimpleStore.Services.Catalog.Domain
 
         public DateTime? UpdateDate { get; set; }
 
-        public Brand(string name, string? description)
+        public Guid BrandId { get; protected set; }
+
+        public virtual Brand? Brand { get; set; }
+
+        public IReadOnlyCollection<ProductCategory> Categories 
+        {
+            get => _categories;
+        }
+
+        public Product(string name, string? description)
         {
             Name = name;
             Description = description;

@@ -20,14 +20,19 @@ namespace SimpleStore.Services.Catalog.Application.Commands.Handlers
 
         public async Task<ProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            Brand? brand = await _unitOfWork.Repository<Brand>().Entities.SingleOrDefaultAsync(brand => brand.Id == request.BrandId);
+            Product product = new Product(request.Name, request.Description);
 
-            if (brand is null)
+            if (request.BrandId != null)
             {
-                throw new ArgumentException(nameof(request.BrandId), $"The brand with id '{request.BrandId}' could not be found.");
-            }
+                Brand? brand = await _unitOfWork.Repository<Brand>().Entities.SingleOrDefaultAsync(brand => brand.Id == request.BrandId);
 
-            Product product = new Product(request.Name, request.Description, brand);
+                if (brand is null)
+                {
+                    throw new ArgumentException(nameof(request.BrandId), $"The brand with id '{request.BrandId}' could not be found.");
+                }
+
+                product.Brand = brand;
+            }
 
             product = await _unitOfWork.Repository<Product>().AddAsync(product, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);

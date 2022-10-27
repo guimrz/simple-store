@@ -39,8 +39,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core", "Core\Si
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{F1A6BDBE-4343-43E6-94F9-5BFCA9035DF2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{04F037D7-F1EF-448B-BFF1-B8AA4D78F13E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Basket.Application", "Services\Basket\SimpleStore.Services.Basket.Application\SimpleStore.Services.Basket.Application.csproj", "{4DB9E3BF-A4B8-4690-AC02-B5CA2546A9C3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Services.Basket.Domain", "Services\Basket\SimpleStore.Services.Basket.Domain\SimpleStore.Services.Basket.Domain.csproj", "{287871D7-E243-4968-8B76-604BD120AB10}"
@@ -59,7 +57,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{350A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Gateway", "Gateway\SimpleStore.Gateway\SimpleStore.Gateway.csproj", "{D0CE60BE-E8A8-443F-B034-911718908B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleStore.Core.ServiceRegistry.Consul", "Core\SimpleStore.Core.ServiceRegistry.Consul\SimpleStore.Core.ServiceRegistry.Consul.csproj", "{F94E95D2-FE01-45EA-96C3-1E4AA8FB6D15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core.ServiceRegistry.Consul", "Core\SimpleStore.Core.ServiceRegistry.Consul\SimpleStore.Core.ServiceRegistry.Consul.csproj", "{F94E95D2-FE01-45EA-96C3-1E4AA8FB6D15}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleStore.Core.ServiceRegistry", "Core\SimpleStore.Core.ServiceRegistry\SimpleStore.Core.ServiceRegistry.csproj", "{0AA867D5-A38E-416A-9A85-24B1716D3C1D}"
 EndProject
@@ -169,7 +167,6 @@ Global
 		{D7DEDFBB-CA93-4AE8-AB50-3775185C6F42} = {E031082D-4FB4-4C51-8C5C-CFE627DBB143}
 		{1132CD80-DEFC-4A83-B306-A5E10D2418A9} = {E031082D-4FB4-4C51-8C5C-CFE627DBB143}
 		{F1A6BDBE-4343-43E6-94F9-5BFCA9035DF2} = {49B65C2C-364F-4E8D-9C69-FC8C2F650810}
-		{04F037D7-F1EF-448B-BFF1-B8AA4D78F13E} = {49B65C2C-364F-4E8D-9C69-FC8C2F650810}
 		{4DB9E3BF-A4B8-4690-AC02-B5CA2546A9C3} = {3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}
 		{287871D7-E243-4968-8B76-604BD120AB10} = {3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}
 		{47F9BA4F-A8AF-4A62-970A-715408F1490C} = {3CD7A9EA-62AB-4DA3-8C54-649B828CEE8F}

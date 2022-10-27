@@ -10,6 +10,7 @@ using SimpleStore.Services.Catalog.Grpc;
 using SimpleStore.Services.Catalog.Repository;
 using SimpleStore.Services.Catalog.Repository.Extensions;
 using Serilog;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -19,9 +20,7 @@ Log.Information("Starting up...");
 
 try
 {
-
     var builder = WebApplication.CreateBuilder(args);
-
 
     // Configure logger
     builder.Host.UseSerilog((context, configuration) =>
@@ -45,6 +44,26 @@ try
             Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
             BearerFormat = "JWT",
             Scheme = "Bearer"
+        });
+    });
+
+    // Configure identity
+    builder.Services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, builder.Configuration.GetSection("JwtBearer"));
+    builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        builder.Configuration.Bind("JwtBearer", options);
+    });
+
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("UserOnly", policy =>
+        {
+            policy.RequireClaim("sub");
         });
     });
 
@@ -76,6 +95,7 @@ try
 
     app.UseMiddleware<ExceptionMiddleware>();
 
+    app.UseAuthentication();
     app.UseAuthorization();
 
     // Configure health checks
@@ -84,7 +104,10 @@ try
     app.MapControllers();
 
     app.UseCatalogGrpc();
+
     await app.MigrateDatabaseAsync<CatalogDbContext>();
+    await app.SeedDatabaseAsync();
+
 
     app.Run();
 }
