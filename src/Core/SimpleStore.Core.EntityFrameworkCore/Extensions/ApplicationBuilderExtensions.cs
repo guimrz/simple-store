@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using SimpleStore.Core.EntityFrameworkCore.Abstractions;
 
 namespace SimpleStore.Core.EntityFrameworkCore.Extensions
 {
@@ -17,13 +19,27 @@ namespace SimpleStore.Core.EntityFrameworkCore.Extensions
             return applicationBuilder;
         }
 
-        public static IApplicationBuilder MigrateDatabase<TContext>(this IApplicationBuilder applicationBuilder)
-           where TContext : DbContext
+        public static async Task<IApplicationBuilder> SeedDatabaseAsync(this IApplicationBuilder applicationBuilder)
         {
             using var scope = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
-            using var context = scope.ServiceProvider.GetRequiredService<TContext>();
 
-            context.Database.Migrate();
+            var logger = scope.ServiceProvider.GetRequiredService<ILogger<IApplicationBuilder>>();
+            var seedingServices = scope.ServiceProvider.GetServices<ISeedingService>();
+
+            if (seedingServices.Any())
+            {
+                logger.LogInformation($"Found {seedingServices.Count()} seeding services in the registered services.");
+
+                foreach (var seedingService in seedingServices)
+                {
+                    logger.LogInformation($"Seeding database with data from {seedingService.GetType().FullName}.");
+                    await seedingService.SeedAsync();
+                }
+            }
+            else
+            {
+                logger.LogInformation("No seeding services were found in the registered services.");
+            }
 
             return applicationBuilder;
         }
