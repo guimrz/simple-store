@@ -14,7 +14,7 @@ WORKDIR "/src/Applications/Backoffice/SimpleStore.Applications.Backoffice.WebApp
 RUN dotnet build "SimpleStore.Applications.Backoffice.WebApp.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "SimpleStore.Applications.Backoffice.WebApp.csproj" -c Release -o /app/publish
+RUN dotnet publish "SimpleStore.Applications.Backoffice.WebApp.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

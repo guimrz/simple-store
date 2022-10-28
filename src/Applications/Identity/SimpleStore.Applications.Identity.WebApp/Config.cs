@@ -15,7 +15,7 @@ namespace SimpleStore.Applications.Identity.WebApp
             new ApiScope[]
             {
                 new ApiScope("internal"),
-                new ApiScope("trusted"),
+                new ApiScope("trusted")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -27,9 +27,45 @@ namespace SimpleStore.Applications.Identity.WebApp
                     ClientName = "Client Credentials Client",
 
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
+                    ClientSecrets = 
+                    { 
+                        new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) 
+                    },
 
-                    AllowedScopes = { "internal", "trusted" }
+                    AllowedScopes = 
+                    { 
+                        "internal", "trusted" 
+                    }
+                },
+                new Client
+                {
+                    ClientId="backoffice",
+                    ClientName = "Backoffice OIDC Client",
+                    ClientSecrets = 
+                    {
+                        new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256())
+                    },
+
+                    AllowedGrantTypes = GrantTypes.Code,
+
+                    RedirectUris =
+                    {
+                        "http://localhost:60001/signin-oidc",
+                        "https://localhost:61001/signin-oidc",
+                        "http://backoffice-application:60001/signin-oidc",
+                    },
+                    PostLogoutRedirectUris=
+                    {
+                        "http://localhost:60001/signout-callback-oidc",
+                        "https://localhost:61001/signout-callback-oidc",
+                        "http://backoffice-application:60001/signout-callback-oidc",
+                    },
+
+                    AllowedScopes =
+                    {
+                        "openid",
+                        "profile"
+                    }
                 }
             };
     }

@@ -1,16 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>18a6417f-1a5e-47cd-a176-15651f63bec0</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..\..</DockerfileContext>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>ef0df272-dba9-4c07-bba7-39251ea290cb</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..</DockerfileContext>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.1" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Serilog" Version="2.10.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="5.0.1" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+	</ItemGroup>
 
 </Project>
