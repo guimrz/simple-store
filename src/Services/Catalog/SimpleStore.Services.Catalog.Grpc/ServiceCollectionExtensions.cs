@@ -21,7 +21,9 @@ namespace SimpleStore.Services.Catalog.Grpc
                 configuration.CreateMap<Product, ProductDetailsReply>()
                     .ForMember(target => target.ProductId, map => map.MapFrom(source => source.Id.ToString()))
                     .ForMember(target => target.Name, map => map.MapFrom(source => source.Name))
-                    .ForMember(target => target.Description, map => map.MapFrom(source => source.Description));
+                    .ForMember(target => target.Description, map => map.MapFrom(source => source.Description))
+                    .ForMember(target => target.Price, map => map.MapFrom(source => source.Price))
+                    .ForMember(target => target.Stock, map => map.MapFrom(source => source.Stock));
             });
 
             return services;

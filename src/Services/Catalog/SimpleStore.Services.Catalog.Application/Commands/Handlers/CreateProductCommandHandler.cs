@@ -20,7 +20,7 @@ namespace SimpleStore.Services.Catalog.Application.Commands.Handlers
 
         public async Task<ProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            Product product = new Product(request.Name, request.Description);
+            Product product = new Product(request.Name, request.Price, request.Stock, request.Description);
 
             if (request.BrandId != null)
             {
@@ -32,6 +32,23 @@ namespace SimpleStore.Services.Catalog.Application.Commands.Handlers
                 }
 
                 product.Brand = brand;
+            }
+
+            if (request.Categories != null && request.Categories.Any())
+            {
+                var categoriesRepository = _unitOfWork.Repository<Category>();
+
+                foreach (var categoryId in request.Categories.Distinct())
+                {
+                    var category = await categoriesRepository.Entities.SingleOrDefaultAsync(c => c.Id == categoryId);
+
+                    if (category is null)
+                    {
+                        throw new ArgumentException($"The category with id '{categoryId}' could not be found.");
+                    }
+
+                    product.Add(category);
+                }
             }
 
             product = await _unitOfWork.Repository<Product>().AddAsync(product, cancellationToken);

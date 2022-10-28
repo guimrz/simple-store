@@ -20,7 +20,10 @@ namespace SimpleStore.Services.Catalog.Application.Commands.Handlers
         }
         public async Task<ProductResponse> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            Product? product = await _unitOfWork.Repository<Product>().Entities.Include(product => product.Brand).SingleOrDefaultAsync(product => product.Id == request.ProductId);
+            Product? product = await _unitOfWork.Repository<Product>().Entities
+                .Include(product => product.Brand)
+                .Include(product => product.Categories)
+                .SingleOrDefaultAsync(product => product.Id == request.ProductId);
 
             if (product is null)
             {
@@ -35,9 +38,35 @@ namespace SimpleStore.Services.Catalog.Application.Commands.Handlers
                 throw new ArgumentException(nameof(request.BrandId), $"The brand with id '{request.BrandId}' could not be found.");
             }
 
+            // Update the categories
+            if (product.Categories.Any())
+            {
+                product.RemoveAll();
+
+                if (request.Categories != null || request.Categories!.Any())
+                {
+                    var categoriesRepository = _unitOfWork.Repository<Category>();
+                    foreach (var categoryId in request.Categories!.Distinct())
+                    {
+                        var category = await categoriesRepository.Entities.SingleOrDefaultAsync(p => p.Id == categoryId);
+
+                        if (category is null)
+                        {
+                            throw new ArgumentException($"The category with id '{categoryId}' could not be found.");
+                        }
+
+                        product.Add(category);
+                    }
+                }
+            }
+
             product.Name = request.Name;
             product.Description = request.Description;
             product.Brand = brand;
+            product.PictureUrl = request.PictureUrl;
+
+            product.UpdatePrice(request.Price);
+            product.UpdateStock(request.Stock);
 
             await _unitOfWork.SaveChangesAsync();
 

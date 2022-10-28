@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleStore.Core.Entities;
+using SimpleStore.Core.Domain.Abstractions;
 using SimpleStore.Core.EntityFrameworkCore.Abstractions;
 
 namespace SimpleStore.Core.EntityFrameworkCore

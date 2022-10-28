@@ -1,34 +1,33 @@
-﻿using SimpleStore.Core.Entities;
+﻿using SimpleStore.Core.Domain;
+using SimpleStore.Core.Domain.Abstractions;
 using SimpleStore.Core.Extensions;
+using SimpleStore.Services.Catalog.Domain.Exceptions;
 
 namespace SimpleStore.Services.Catalog.Domain
 {
-    public class Category : IEntity<Guid>
+    public class Category : EntityBase<Guid>, IEntity<Guid>
     {
+        private readonly List<Product> _products = new List<Product>();
         private string _name = default!;
-
-        public Guid Id { get; protected set; }
-
-        public DateTime CreationDate { get; protected set; }
-
-        public DateTime? UpdateDate { get; set; }
 
         public string Name
         {
             get => _name;
-            set
+            private set
             {
-                value.ThrowIfNullOrWhitespaces(nameof(Name));
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new CatalogDomainException($"The value of {nameof(Name)} cannot be null, empty or whitespaces.");
+                }
+
                 _name = value;
             }
         }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public Category(string name, string description)
+        public Category(string name, string? description)
         {
-            Id = Guid.NewGuid();
-            CreationDate = DateTime.UtcNow;
             Name = name;
             Description = description;
         }

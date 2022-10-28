@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SimpleStore.Services.Catalog.Domain;
+using SimpleStore.Services.Catalog.Repository.Entities;
 
 namespace SimpleStore.Services.Catalog.Repository.TypeConfigurations
 {
@@ -20,16 +21,16 @@ namespace SimpleStore.Services.Catalog.Repository.TypeConfigurations
             builder.Property(product => product.CreationDate)
                 .IsRequired();
 
+            builder.Property(product => product.Price).IsRequired();
+
+            builder.Property(product => product.Stock).IsRequired();
+
             builder.HasOne(product => product.Brand)
                 .WithMany()
-                .HasForeignKey(product => product.BrandId)
+                .HasForeignKey("BrandId")
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasMany(product => product.Categories)
-                .WithOne(productCategory => productCategory.Product)
-                .HasForeignKey(productCategory => productCategory.ProductId)
-                .OnDelete(DeleteBehavior.Cascade);
             builder.Metadata.SetPropertyAccessMode(PropertyAccessMode.PreferField);
         }
     }

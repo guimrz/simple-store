@@ -11,9 +11,6 @@ namespace SimpleStore.Services.Catalog.Repository.TypeConfigurations
             builder.ToTable("Categories")
                 .HasKey(category => category.Id);
 
-            builder.Property(category => category.CreationDate)
-                .IsRequired();
-
             builder.Property(category => category.Name)
                 .HasMaxLength(64)
                 .IsRequired();

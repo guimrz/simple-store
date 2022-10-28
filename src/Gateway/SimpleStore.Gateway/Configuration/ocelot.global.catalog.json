@@ -23,7 +23,19 @@
         "Put",
         "Delete"
       ],
-      "ServiceName": "catalog-service"     
+      "ServiceName": "catalog-service"
+    },
+    {
+      "DownstreamPathTemplate": "/api/categories{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/categories{everything}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Delete"
+      ],
+      "ServiceName": "catalog-service"
     }
   ]
 }

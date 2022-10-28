@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,6 +9,14 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\SimpleStore.Core.Domain\SimpleStore.Core.Domain.csproj" />
     <ProjectReference Include="..\..\..\Core\SimpleStore.Core\SimpleStore.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Events\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.0.0" />
   </ItemGroup>
 
 </Project>

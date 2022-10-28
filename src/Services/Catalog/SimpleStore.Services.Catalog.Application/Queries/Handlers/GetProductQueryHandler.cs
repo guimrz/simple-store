@@ -21,7 +21,10 @@ namespace SimpleStore.Services.Catalog.Application.Queries.Handlers
 
         public async Task<ProductResponse> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
-            Product? product = await _unitOfWork.Repository<Product>().Entities.Include(product => product.Brand).SingleOrDefaultAsync(product => product.Id == request.ProductId);
+            Product? product = await _unitOfWork.Repository<Product>()
+                .Entities.Include(product => product.Brand)
+                .Include(p => p.Categories)
+                .SingleOrDefaultAsync(product => product.Id == request.ProductId);
 
             if (product is null)
             {

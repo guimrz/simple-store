@@ -53,11 +53,7 @@ namespace SimpleStore.Services.Catalog.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -65,10 +61,12 @@ namespace SimpleStore.Services.Catalog.Repository.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
+                    b.Property<Guid?>("ProductId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Categories", (string)null);
                 });
@@ -93,6 +91,15 @@ namespace SimpleStore.Services.Catalog.Repository.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
@@ -103,31 +110,29 @@ namespace SimpleStore.Services.Catalog.Repository.Migrations
                     b.ToTable("Products", (string)null);
                 });
 
-            modelBuilder.Entity("SimpleStore.Services.Catalog.Domain.ProductCategory", b =>
+            modelBuilder.Entity("SimpleStore.Services.Catalog.Repository.Entities.ProductCategory", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
+                    b.HasKey("ProductId", "CategoryId");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("ProductId");
-
                     b.ToTable("ProductCategories", (string)null);
+                });
+
+            modelBuilder.Entity("SimpleStore.Services.Catalog.Domain.Category", b =>
+                {
+                    b.HasOne("SimpleStore.Services.Catalog.Domain.Product", null)
+                        .WithMany("Categories")
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("SimpleStore.Services.Catalog.Domain.Product", b =>
@@ -141,7 +146,7 @@ namespace SimpleStore.Services.Catalog.Repository.Migrations
                     b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("SimpleStore.Services.Catalog.Domain.ProductCategory", b =>
+            modelBuilder.Entity("SimpleStore.Services.Catalog.Repository.Entities.ProductCategory", b =>
                 {
                     b.HasOne("SimpleStore.Services.Catalog.Domain.Category", "Category")
                         .WithMany()
@@ -150,7 +155,7 @@ namespace SimpleStore.Services.Catalog.Repository.Migrations
                         .IsRequired();
 
                     b.HasOne("SimpleStore.Services.Catalog.Domain.Product", "Product")
-                        .WithMany("Categories")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

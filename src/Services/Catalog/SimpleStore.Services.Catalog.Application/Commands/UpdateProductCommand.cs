@@ -17,8 +17,19 @@ namespace SimpleStore.Services.Catalog.Application.Commands
 
         public string? Description { get; set; }
 
+        public string? PictureUrl { get; set; }
+
         [Required]
+        [Range(0, double.MaxValue)]
+        public decimal Price { get; set; }
+
+        [Required]
+        [Range(0, int.MaxValue)]
+        public int Stock { get; set; }
+
         [ValidBrandValidationAttribute]
-        public Guid BrandId { get; set; }
+        public Guid? BrandId { get; set; }
+
+        public IEnumerable<Guid>? Categories { get; set; }
     }
 }

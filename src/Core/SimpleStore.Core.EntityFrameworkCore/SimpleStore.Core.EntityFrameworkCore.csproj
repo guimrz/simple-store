@@ -14,6 +14,7 @@
   </ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\SimpleStore.Core.Domain\SimpleStore.Core.Domain.csproj" />
 	  <ProjectReference Include="..\SimpleStore.Core\SimpleStore.Core.csproj" />
 	</ItemGroup>
 

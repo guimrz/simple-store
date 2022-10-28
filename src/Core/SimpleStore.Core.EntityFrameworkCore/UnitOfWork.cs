@@ -1,39 +1,101 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SimpleStore.Core.Entities;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.DependencyInjection;
+using SimpleStore.Core.Domain.Abstractions;
 using SimpleStore.Core.EntityFrameworkCore.Abstractions;
+using SimpleStore.Core.EntityFrameworkCore.Interceptors;
 
 namespace SimpleStore.Core.EntityFrameworkCore
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork<TContext> : IUnitOfWork, IDisposable
+        where TContext : DbContext
     {
-        protected IDictionary<Type, object> repositories;
+        private bool disposedValue;
+
         protected readonly DbContext dbContext;
+        protected readonly IServiceProvider serviceProvider;
 
-        public UnitOfWork(DbContext dbContext)
+        public UnitOfWork(IServiceProvider serviceProvider)
         {
-            this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            repositories = new Dictionary<Type, object>();
+            this.serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+            dbContext = serviceProvider.GetRequiredService<TContext>();
         }
 
-        public IRepository<T> Repository<T>() where T : IEntity
+        public IRepository<T> Repository<T>()
+            where T : class, IEntity
         {
-            var repository = repositories.SingleOrDefault(kvp => kvp.Key.IsAssignableTo(typeof(IRepository<T>))).Value;
+            Type repositoryType = typeof(Repository<>).MakeGenericType(typeof(T));
+            var repository = Activator.CreateInstance(repositoryType, dbContext) as Repository<T>;
 
-            if (repository is null)
-            {
-                throw new InvalidOperationException($"The unit of work doesn't have a repository for the specified entity '{typeof(T).FullName}'-");
-            }
-            else if (!repository.GetType().IsAssignableTo(typeof(IRepository<T>)))
-            {
-                throw new InvalidOperationException($"The registered repository for the entity of type '{typeof(T).FullName}' doesn't implement the interface '{typeof(IRepository<>).FullName}'.");
-            }
-
-            return (repository as IRepository<T>)!;
+            return repository!;
         }
 
-        public Task SaveChangesAsync(CancellationToken cancellationToken)
+        public async Task SaveChangesAsync(CancellationToken cancellationToken)
         {
-            return dbContext.SaveChangesAsync();
+            var entries = dbContext.ChangeTracker.Entries();
+
+            ExecuteInterceptors(entries);          
+            var domainEvents = ReadDomainEvents(entries);
+
+            await dbContext.SaveChangesAsync();
+            await DispatchDomainEvents(domainEvents);            
+        }
+
+        protected void ExecuteInterceptors(IEnumerable<EntityEntry> entries)
+        {
+            var interceptors = serviceProvider.GetServices<IChangeTrackerInterceptor>();
+            foreach (var changedEntity in entries)
+            {
+                foreach (var interceptor in interceptors)
+                {
+                    interceptor.Intercept(changedEntity);
+                }
+            }
+        }
+
+        protected IEnumerable<INotification> ReadDomainEvents(IEnumerable<EntityEntry> entries)
+        {
+            List<INotification> notifications = new List<INotification>();
+            foreach (var entry in entries.Where(e => e.Entity is IEntity).Select(e => e.Entity).Cast<IEntity>())
+            {
+                notifications.AddRange(entry.Events);
+            }
+
+            return notifications;
+        }
+
+        protected Task DispatchDomainEvents(IEnumerable<INotification> domainEvents)
+        {
+            var mediator = serviceProvider.GetRequiredService<IMediator>();
+
+            foreach(var domainEvent in domainEvents)
+            {
+                mediator.Publish(domainEvent).ConfigureAwait(false);
+            }
+
+            return Task.CompletedTask;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                dbContext.Dispose();
+
+                disposedValue = true;
+            }
+        }
+
+        ~UnitOfWork()
+        {
+            Dispose(disposing: false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

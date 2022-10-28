@@ -1,9 +1,9 @@
-﻿using SimpleStore.Core.Entities;
+﻿using SimpleStore.Core.Domain.Abstractions;
 
 namespace SimpleStore.Core.EntityFrameworkCore.Abstractions
 {
     public interface IRepository<TEntity>
-        where TEntity : IEntity
+        where TEntity : class, IEntity
     {
         IQueryable<TEntity> Entities { get; }
 

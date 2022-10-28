@@ -18,14 +18,14 @@ namespace SimpleStore.Services.Catalog.Application
 
         private static IServiceCollection AddCatalogMapping(this IServiceCollection services)
         {
-            services.AddAutoMapper(configuration => 
+            services.AddAutoMapper(configuration =>
             {
                 configuration.CreateMap<Product, ProductResponse>();
                 configuration.CreateMap<Brand, ProductBrandResponse>();
                 configuration.CreateMap<Brand, BrandResponse>();
                 configuration.CreateMap<Category, CategoryResponse>();
+                configuration.CreateMap<Category, ProductCategoryResponse>();
             });
-
 
             return services;
         }
