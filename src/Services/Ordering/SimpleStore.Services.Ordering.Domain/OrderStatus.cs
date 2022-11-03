@@ -1,37 +1,27 @@
-﻿using SimpleStore.Services.Ordering.Domain.Exceptions;
+﻿using SimpleStore.Core.Domain;
+using SimpleStore.Core.Domain.Abstractions;
 
 namespace SimpleStore.Services.Ordering.Domain
 {
-    public class OrderStatus
+    public class OrderStatus : EntityBase<Guid>, IEntity<Guid>
     {
-        public Guid Id { get; private set; }
+        public Status Status { get; set; }
 
-        public Status Status { get; private set; }
+        public string? Comment { get; set; }
 
-        public string? Comment { get; private set; }
-
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; protected set; }
 
         public OrderStatus(Status status, string? comment)
-        {
-            if (status is null)
-            {
-                throw new OrderingDomainException($"The value of {Status} cannot be null.");
-            }
-
-            Id = Guid.NewGuid();
-            Status = status;
-            Comment = comment;
-            Date = DateTime.UtcNow;
-        }
-
-        #region EFCore
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        protected OrderStatus()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+            : this(status, DateTime.UtcNow, comment)
         {
             //
         }
-        #endregion
+
+        public OrderStatus(Status status, DateTime date, string? comment)
+        {
+            Status = status;
+            Date = date;
+            Comment = comment;
+        }
     }
 }

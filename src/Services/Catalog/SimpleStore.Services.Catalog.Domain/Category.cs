@@ -1,13 +1,11 @@
 ﻿using SimpleStore.Core.Domain;
 using SimpleStore.Core.Domain.Abstractions;
-using SimpleStore.Core.Extensions;
 using SimpleStore.Services.Catalog.Domain.Exceptions;
 
 namespace SimpleStore.Services.Catalog.Domain
 {
     public class Category : EntityBase<Guid>, IEntity<Guid>
     {
-        private readonly List<Product> _products = new List<Product>();
         private string _name = default!;
 
         public string Name
